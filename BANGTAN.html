@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Gene Mae Caramihan</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            background: #030e16;
+            color: white;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 0 10%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            margin-right: 30px;
+        }
+
+        .logo span {
+            color: #00bfff;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 33px;
+        }
+
+        nav a {
+            color: white;
+            font-size: 16px;
+            transition: .3s;
+            padding-right: 15px;
+        }
+
+        nav a:hover {
+            color: #00bfff;
+        }
+
+        .cv-btn {
+            background: #ff4d79;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 50px;
+            gap: 100px;
+        }
+
+        .hero-img img {
+            width: 380px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #00bfff;
+        }
+
+        .hero-text h1 {
+            font-size: 60px;
+        }
+
+        .hero-text h3 span {
+            color: #00bfff;
+        }
+
+        .hero-text p {
+            color: #bdc3c7;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .social {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social a {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #00bfff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #00bfff;
+            transition: .3s;
+        }
+
+        .social a:hover {
+            background: #00bfff;
+            color: #030e16;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .hire {
+            background: #00bfff;
+            color: #030e16;
+        }
+
+        .contact {
+            border: 2px solid #00bfff;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 40px;
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        section h2 {
+            font-size: 40px;
+            color: #00bfff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            text-align: center;
+            color: #bdc3c7;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* SKILLS */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .skill-card i {
+            font-size: 50px;
+            color: #bdc3c7;
+            margin-bottom: 10px;
+            transition: .3s;
+        }
+
+        .skill-card span {
+            display: block;
+            color: #bdc3c7;
+            font-weight: 600;
+        }
+
+        .skill-card:hover,
+        .skill-card.active {
+            transform: scale(1.2);
+            z-index: 2;
+        }
+
+        /* PORTFOLIO & TUTORIAL */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.5s ease, z-index 0s;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .4s;
+        }
+
+        .portfolio-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(0, 191, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: .4s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-layer {
+            height: 100%;
+        }
+
+        /* VERTICAL TUTORIAL GRID */
+        .tutorial-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .tutorial-card {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .video-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #1a262f;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .video-box:hover {
+            border-color: #00bfff;
+            transform: translateY(-5px);
+        }
+
+        .video-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: white;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .video-box:hover .play-overlay {
+            color: #00bfff;
+            opacity: 1;
+        }
+
+        .tutorial-card h4 {
+            color: #bdc3c7;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        /* ZOOM CLASS */
+        .portfolio-item.zoomed {
+            transform: scale(1.5);
+            z-index: 999;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            position: relative;
+        }
+
+        .portfolio-item.zoomed .portfolio-layer {
+            opacity: 0; 
+        }
+
+        .portfolio-layer h4 {
+            color: #030e16;
+            font-size: 24px;
+        }
+
+        .portfolio-layer p {
+            color: #030e16;
+        }
+
+        /* ACHIEVEMENTS GRID */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .achievement-card:hover {
+            border-color: #00bfff;
+            transform: translateY(-5px);
+        }
+
+        .achievement-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .achievement-card h4 {
+            color: #00bfff;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        /* ABOUT SECTION STYLES */
+        .about-image-wrapper {
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 320px;
+        }
+
+        .dot-pattern {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.3) 2px, transparent 2px);
+            background-size: 16px 16px;
+            z-index: 0;
+        }
+
+        .dot-top { top: -30px; left: 30px; }
+        .dot-bottom { bottom: -30px; right: 30px; }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header id="home">
+    <div class="logo">Port<span>folio</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+        <a href="#" class="cv-btn">Download CV</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-img">
+        <img src="j.png" alt="Profile Image">
+    </div>
+
+    <div class="hero-text">
+        <h4>Hello I'm</h4>
+        <h1>Gene Mae Caramihan</h1>
+        <h3>And I'm a <span>Web Developer</span></h3>
+
+        <p>I am a passionate web developer who enjoys creating clean and responsive websites.</p>
+
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <div class="buttons">
+            <a href="#" class="btn hire">Hire Me</a>
+            <a href="#" class="btn contact">Contact Me</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" style="background: transparent; border: none;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:100px; flex-wrap:wrap; max-width: 1100px; margin: auto;">
+
+        <div class="about-image-wrapper">
+            <div class="dot-pattern dot-top"></div>
+            
+            <img src="about.jpg" alt="About Image"
+                 style="width:340px; height:340px; object-fit:cover; border-radius: 50%; 
+                        position: relative; z-index: 1; border: none; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+            
+            <div class="dot-pattern dot-bottom"></div>
+        </div>
+
+        <div style="flex:1.2; min-width:300px;">
+            <h2 style="text-align: left; margin-bottom: 20px; font-size: 36px; font-weight: 700;">About Me</h2>
+            <p style="text-align: left; line-height: 1.8; color: #bdc3c7; font-size: 16px;">
+                A passionate web developer with a creative flair and a knack for turning visions into reality. 
+                My journey in web development began with a fascination for coding and design, and it has 
+                evolved into a career where I blend aesthetics with functionality. With a focus on user 
+                experience and a commitment to staying updated with the latest industry trends, I'm 
+                dedicated to creating web solutions that not only meet but exceed expectations.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Technical Expertise</h2>
+    <p>Click a skill to highlight it.</p>
+
+    <div class="skills-container">
+        <div class="skill-card html">
+            <i class="fa-brands fa-html5"></i>
+            <span>HTML5</span>
+        </div>
+        <div class="skill-card css">
+            <i class="fa-brands fa-css3-alt"></i>
+            <span>CSS3</span>
+        </div>
+        <div class="skill-card js">
+            <i class="fa-brands fa-js"></i>
+            <span>JavaScript</span>
+        </div>
+        <div class="skill-card figma">
+            <i class="fa-brands fa-figma"></i>
+            <span>Figma</span>
+        </div>
+        <div class="skill-card canva">
+            <i class="fa-solid fa-palette"></i>
+            <span>Canva</span>
+        </div>
+        <div class="skill-card premiere">
+            <i class="fa-solid fa-video"></i>
+            <span>Premiere Pro</span>
+        </div>
+    </div>
+</section>
+
+<section id="tutorial">
+    <h2>Video Tutorials</h2>
+    <p>Watch my latest coding tutorials on YouTube.</p>
+    
+    <div class="tutorial-grid">
+        
+        <div class="tutorial-card">
+            <a href="https://www.youtube.com/watch?v=UwThwHPgsIw" target="_blank">
+                <div class="video-box">
+                    <img src="https://i.ytimg.com/vi/UwThwHPgsIw/maxresdefault.jpg" alt="Canva Tutorial Thumbnail">
+                    <div class="play-overlay">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+                </div>
+            </a>
+            <h4>Mastering Canva in 2026</h4>
+        </div>
+
+        <div class="tutorial-card">
+            <a href="https://www.youtube.com/watch?v=jQ1sfKIl50E" target="_blank">
+                <div class="video-box">
+                    <img src="https://i.ytimg.com/vi/jQ1sfKIl50E/maxresdefault.jpg" alt="Lyric Video Tutorial">
+                    <div class="play-overlay">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+                </div>
+            </a>
+            <h4>Lyric Video Creation</h4>
+        </div>
+
+        <div class="tutorial-card">
+            <a href="https://www.youtube.com/watch?v=BeH1I5n-798" target="_blank">
+                <div class="video-box">
+                    <img src="https://i.ytimg.com/vi/BeH1I5n-798/maxresdefault.jpg" alt="Nature Tutorial">
+                    <div class="play-overlay">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+                </div>
+            </a>
+            <h4>Nature Cinematography</h4>
+        </div>
+
+    </div>
+</section>
+
+<section id="portfolio">
+    <h2>My Work</h2>
+    <p>Click on any image to zoom in.</p>
+
+    <div class="portfolio-grid">
+        <div class="portfolio-item work-item">
+            <img src="d.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Web Design</h4>
+                <p>Responsive website design.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item work-item">
+            <img src="k.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>App UI</h4>
+                <p>Modern UI design.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item work-item">
+            <img src="project3.jpg" alt="">
+            <div class="portfolio-layer">
+                <h4>Dashboard</h4>
+                <p>Data dashboard design.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="achievements">
+    <h2>Achievements</h2>
+    <p>A showcase of my certificates and milestones.</p>
+    
+    <div class="achievements-grid">
+        <div class="achievement-card">
+            <img src="achievement1.jpg" alt="Achievement 1">
+            <h4>Certificate Name</h4>
+            <p>Brief description of the award or certificate.</p>
+        </div>
+        <div class="achievement-card">
+            <img src="achievement2.jpg" alt="Achievement 2">
+            <h4>Milestone reached</h4>
+            <p>Brief description of the achievement.</p>
+        </div>
+        <div class="achievement-card">
+            <img src="achievement3.jpg" alt="Achievement 3">
+            <h4>Course Completion</h4>
+            <p>Brief description of what you learned.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Get in touch</h2>
+    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+</section>
+
+</div>
+
+<script>
+// Skills Selection Logic
+const cards = document.querySelectorAll('.skill-card');
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+    });
+});
+
+// Zoom Effect Logic
+const workItems = document.querySelectorAll('.work-item');
+
+workItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        item.classList.toggle('zoomed');
+        workItems.forEach(otherItem => {
+            if (otherItem !== item) {
+                otherItem.classList.remove('zoomed');
+            }
+        });
+        e.stopPropagation();
+    });
+});
+
+document.addEventListener('click', () => {
+    workItems.forEach(item => {
+        item.classList.remove('zoomed');
+    });
+});
+</script>
+
+</body>
+</html>
